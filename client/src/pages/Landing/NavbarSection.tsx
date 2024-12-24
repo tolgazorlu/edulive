@@ -12,7 +12,7 @@ import {
 import { useOCAuth } from "@opencampus/ocid-connect-js";
 
 import NavItems from "./NavItems";
-import { MenuIcon, RadioIcon, XIcon } from "lucide-react";
+import { LogOutIcon, MenuIcon, RadioIcon, XIcon } from "lucide-react";
 
 type NavbarColorType = "white" | "transparent";
 
@@ -89,7 +89,7 @@ const NavbarSection = ({
         </ul>
         <div>
           {OCId ? (
-            <Menu>
+            <Menu placement='bottom-end'>
               <MenuHandler>
                 <Button>
                   <svg
@@ -97,8 +97,8 @@ const NavbarSection = ({
                     fill='none'
                     role='img'
                     xmlns='http://www.w3.org/2000/svg'
-                    width='48'
-                    height='48'
+                    width='32'
+                    height='32'
                   >
                     <mask
                       id=':r10:'
@@ -155,17 +155,80 @@ const NavbarSection = ({
                 </Button>
               </MenuHandler>
               <MenuList>
-                <MenuItem>
-                  username: <span className='text-deep-orange-500'>{OCId}</span>
+                <MenuItem className='flex items-center gap-2'>
+                  <svg
+                    viewBox='0 0 36 36'
+                    fill='none'
+                    role='img'
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='32'
+                    height='32'
+                  >
+                    <mask
+                      id=':r10:'
+                      maskUnits='userSpaceOnUse'
+                      x='0'
+                      y='0'
+                      width='36'
+                      height='36'
+                    >
+                      <rect
+                        width='36'
+                        height='36'
+                        rx='72'
+                        fill='#FFFFFF'
+                      ></rect>
+                    </mask>
+                    <g mask='url(#:r10:)'>
+                      <rect width='36' height='36' fill='#c0dbab'></rect>
+                      <rect
+                        x='0'
+                        y='0'
+                        width='36'
+                        height='36'
+                        transform='translate(6 6) rotate(356 18 18) scale(1.2)'
+                        fill='#e87474'
+                        rx='6'
+                      ></rect>
+                      <g transform='translate(4 1) rotate(6 18 18)'>
+                        <path
+                          d='M13,21 a1,0.75 0 0,0 10,0'
+                          fill='#000000'
+                        ></path>
+                        <rect
+                          x='13'
+                          y='14'
+                          width='1.5'
+                          height='2'
+                          rx='1'
+                          stroke='none'
+                          fill='#000000'
+                        ></rect>
+                        <rect
+                          x='21'
+                          y='14'
+                          width='1.5'
+                          height='2'
+                          rx='1'
+                          stroke='none'
+                          fill='#000000'
+                        ></rect>
+                      </g>
+                    </g>
+                  </svg>{" "}
+                  <span className='text-lg'>{OCId}</span>
                 </MenuItem>
-                <MenuItem>
-                  address:{" "}
-                  <span className='text-indigo-600'>
-                    {ethAddress.slice(0, 5) + "..." + ethAddress.slice(-5)}
+                <MenuItem className='text-lg'>
+                  <span className='text-indigo-600 text-lg'>
+                    {ethAddress.slice(0, 10) + "..." + ethAddress.slice(-5)}
                   </span>
                 </MenuItem>
-                <MenuItem className='text-red-500' onClick={handleLogout}>
+                <MenuItem
+                  className='text-red-300 text-lg flex justify-between'
+                  onClick={handleLogout}
+                >
                   Log out
+                  <LogOutIcon />
                 </MenuItem>
               </MenuList>
             </Menu>

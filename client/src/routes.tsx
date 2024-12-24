@@ -4,6 +4,7 @@ import LandingPage from "./pages/Landing";
 import JoinClass from "./pages/JoinClass";
 import CreateClass from "./pages/CreateClass";
 import { LoginCallBack } from "@opencampus/ocid-connect-js";
+import LiveClass from "./pages/LiveClass";
 
 const onLoginSuccess = () => {
   console.log("success");
@@ -35,6 +36,10 @@ export const routes = createBrowserRouter([
       {
         path: "/create-class",
         element: <CreateClass />,
+      },
+      {
+        path: "/class/:slug",
+        element: <LiveClass />,
       },
       {
         path: "/redirect",

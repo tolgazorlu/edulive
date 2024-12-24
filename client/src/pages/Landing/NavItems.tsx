@@ -40,7 +40,7 @@ function NavItem({ children, href }: NavItemPropsType) {
       href={href}
       variant='small'
       color='blue-gray'
-      className='focus:bg-transparent text-blue-gray-500 text-md flex items-center gap-2 font-medium cursor-pointer hover:text-purple-500'
+      className='focus:bg-transparent text-gray-500 text-md flex items-center gap-2 font-medium cursor-pointer hover:text-deep-orange-500'
     >
       {children}
     </Typography>
@@ -66,7 +66,7 @@ const NavItems = () => {
               >
                 <MenuHandler>
                   <ListItem
-                    className='flex gap-2 items-center text-blue-gray-500 p-0 hover:text-purple-500 text-md focus:bg-transparent hover:bg-transparent'
+                    className='flex gap-2 items-center text-gray-500 p-0 hover:text-deep-orange-500 text-md focus:bg-transparent hover:bg-transparent'
                     key={index}
                   >
                     {item.icon}
