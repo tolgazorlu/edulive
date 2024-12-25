@@ -21,6 +21,8 @@ app.use(express_1.default.json());
 // * ROUTES
 const authRoute = require("./routes/auth.routes");
 app.use("/v1/auth", authRoute);
+const streamRoute = require("./routes/stream.routes");
+app.use("/v1/stream", streamRoute);
 const port = 8080;
 app.listen(port, () => {
     console.log(`Port is running on ${port}`);

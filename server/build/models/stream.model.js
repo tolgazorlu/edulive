@@ -39,7 +39,7 @@ const StreamSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     slug: { type: String },
-    streamURL: { type: String },
+    rtmpURL: { type: String },
     streamKey: { type: String },
     owner: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "User" }],
 });

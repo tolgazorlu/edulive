@@ -1,4 +1,5 @@
 // @components
+import { useCreateStreamMutation } from "../../api/stream";
 import {
   Card,
   Button,
@@ -8,7 +9,9 @@ import {
   Input,
   IconButton,
   Tooltip,
+  Textarea,
 } from "@material-tailwind/react";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { CopyIcon } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,13 +19,36 @@ import { useNavigate } from "react-router-dom";
 // @icons
 
 function CreateClass() {
-  const [roomName, setRoomName] = useState("");
+  const { OCId } = useOCAuth();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  const streamURL =
-    "rtmps://ingress.stream-io-video.com:443/t2ghjyj5cz34.livestream.livestream_09441999-7cb6-4917-ae88-3ab34f87d6a7";
+  const [rtmpURL, setRtmpURL] = useState("");
+  const [streamKey, setStreamKey] = useState("");
+  const [slug, setSlug] = useState("");
 
-  const streamKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidG9sZ2EzIiwiaWF0IjoxNzM1MTIzOTQ1fQ.0q37DXPIedC3GFBxRuyE_jeDFncC3cX8BTS3cqV6lP8";
+  const { mutateAsync: createStream } = useCreateStreamMutation();
+
+  const handleCreateStream = async () => {
+    try {
+      const res = await createStream({
+        ocid: OCId,
+        title,
+        description,
+      });
+      setRtmpURL(res.rtmpURL);
+      setStreamKey(res.streamKey);
+      setSlug(res.slug);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const streamURL =
+  //   "rtmps://ingress.stream-io-video.com:443/t2ghjyj5cz34.livestream.livestream_09441999-7cb6-4917-ae88-3ab34f87d6a7";
+
+  // const streamKey =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidG9sZ2EzIiwiaWF0IjoxNzM1MTIzOTQ1fQ.0q37DXPIedC3GFBxRuyE_jeDFncC3cX8BTS3cqV6lP8";
 
   const navigate = useNavigate();
 
@@ -52,20 +78,12 @@ function CreateClass() {
           </CardHeader>
           <CardBody>
             <form action='#' className='flex flex-col gap-4'>
-              <Input
-                name='roomName'
-                value={roomName}
-                className=' text-white'
-                label='Enter a room name'
-                onChange={(e) => {
-                  setRoomName(e.target.value);
-                }}
-              />
+              <Button onClick={handleCreateStream}>Create new Stream</Button>
               <div className='flex items-center gap-2 justify-between'>
                 <Typography className='text-sm'>
                   {" "}
                   <span className='text-white font-bold'>URL:</span>{" "}
-                  {streamURL.slice(0, 50)}
+                  {rtmpURL?.slice(0, 50)}
                 </Typography>
                 <Tooltip
                   content='Copy URL'
@@ -76,7 +94,7 @@ function CreateClass() {
                 >
                   <IconButton
                     onClick={() => {
-                      navigator.clipboard.writeText(streamURL);
+                      navigator.clipboard.writeText(rtmpURL);
                     }}
                   >
                     <CopyIcon width={12} />
@@ -87,7 +105,7 @@ function CreateClass() {
                 <Typography className='text-sm'>
                   {" "}
                   <span className='text-white font-bold'>KEY:</span>{" "}
-                  {streamKey.slice(0, 45)}
+                  {streamKey?.slice(0, 45)}
                 </Typography>
                 <Tooltip
                   content='Copy KEY'
@@ -105,9 +123,27 @@ function CreateClass() {
                   </IconButton>
                 </Tooltip>
               </div>
+              <Input
+                name='title'
+                value={title}
+                className=' text-white'
+                label='Enter a title'
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+              <Textarea
+                name='description'
+                value={description}
+                className=' text-white'
+                label='Some descriptions'
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+              />
               <Button
                 onClick={() => {
-                  navigate("/class/" + roomName);
+                  navigate("/class/" + slug);
                 }}
                 size='lg'
                 color='deep-orange'

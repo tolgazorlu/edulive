@@ -25,6 +25,9 @@ app.use(express.json());
 const authRoute = require("./routes/auth.routes");
 app.use("/v1/auth", authRoute);
 
+const streamRoute = require("./routes/stream.routes");
+app.use("/v1/stream", streamRoute);
+
 const port: number = 8080;
 
 app.listen(port, () => {

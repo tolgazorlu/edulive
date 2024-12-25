@@ -8,4 +8,8 @@ module.exports = {
     database: {
         url: process.env.MONGO_URI,
     },
+    stream: {
+        apiKey: process.env.API_KEY,
+        secretKey: process.env.SECRET_KEY
+    }
 };
