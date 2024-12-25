@@ -12,6 +12,8 @@
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
     "@opencampus/ocid-connect-js": "^1.2.3",
+    "@stream-io/video-react-sdk": "^1.8.7",
+    "@tanstack/react-query": "^5.62.10",
     "agora-rtc-react": "^2.3.0",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/node": "^22.10.2",
     "@types/react": "^18.2.19",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",

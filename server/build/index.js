@@ -19,6 +19,8 @@ app.use(cors({
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 // * ROUTES
+const authRoute = require("./routes/auth.routes");
+app.use("/v1/auth", authRoute);
 const port = 8080;
 app.listen(port, () => {
     console.log(`Port is running on ${port}`);

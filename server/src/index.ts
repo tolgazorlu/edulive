@@ -22,7 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // * ROUTES
-
+const authRoute = require("./routes/auth.routes");
+app.use("/v1/auth", authRoute);
 
 const port: number = 8080;
 
