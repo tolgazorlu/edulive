@@ -1,16 +1,31 @@
 import { Button, Input } from "@material-tailwind/react";
 import { CameraIcon, MicIcon } from "lucide-react";
 import React from "react";
+import {
+  LivestreamPlayer,
+  StreamVideo,
+  StreamVideoClient,
+  User,
+} from "@stream-io/video-react-sdk";
+
+const apiKey = process.env.API_KEY || "t2ghjyj5cz34";
+const token =
+  process.env.TOKEN ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJAc3RyZWFtLWlvL2Rhc2hib2FyZCIsImlhdCI6MTczNTEyNjIxMiwiZXhwIjoxNzM1MjEyNjEyLCJ1c2VyX2lkIjoiIWFub24iLCJyb2xlIjoidmlld2VyIiwiY2FsbF9jaWRzIjpbImxpdmVzdHJlYW06bGl2ZXN0cmVhbV9iZWRjZjA5Yy1mOGEwLTQ3NjUtOTFkOC1hZjA5OWIzNDg0MDkiXX0.tBhmdvl7sAHrEQdsuUh1wdjxJtIM0zRvnMUMWY4iT34";
+const callId =
+  process.env.CALL_ID || "livestream_bedcf09c-f8a0-4765-91d8-af099b348409";
+
+const user: User = { type: "anonymous" };
+const client = new StreamVideoClient({ apiKey, user, token });
 
 const LiveClass = () => {
   return (
     <>
       <div className='grid grid-cols-12 gap-2 p-4'>
-        <div className='col-span-9 h-[80vh] grid grid-cols-2 gap-2'>
-          <div className=' rounded-xl max-h-96 bg-green-50 opacity-30'></div>
-          <div className=' rounded-xl max-h-96 bg-green-50 opacity-30'></div>
-          <div className=' rounded-xl max-h-96 bg-green-50 opacity-30'></div>
-          <div className=' rounded-xl max-h-96 bg-green-50 opacity-30'></div>
+        <div className='col-span-9 w-full h-full'>
+          <StreamVideo client={client}>
+            <LivestreamPlayer callType='livestream' callId={callId} />
+          </StreamVideo>
         </div>
         <div className='col-span-3 h-[80vh] rounded-xl flex flex-col justify-end gap-1 p-1'>
           <div className='w-full h-full '>
