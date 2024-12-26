@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_sdk_1 = require("@stream-io/node-sdk");
-const keys = require("../config/keys");
+const keys = require("./keys");
 const { stream } = keys;
 const client = new node_sdk_1.StreamClient(stream.apiKey, stream.secretKey);
 const uuid_1 = require("uuid");
 const callType = 'livestream';
-const callId = 'my-first-call';
 const call = client.video.call(callType, (0, uuid_1.v4)());
 module.exports = { client, call };

@@ -7,7 +7,9 @@ interface IStream extends Document {
     slug: string;
     rtmpURL: string;
     streamKey: string;
-    owner: IUser
+    owner: IUser;
+    viewerToken: string;
+    callId: string
 }
 
 const StreamSchema: Schema = new Schema({
@@ -17,6 +19,8 @@ const StreamSchema: Schema = new Schema({
     rtmpURL: { type: String },
     streamKey: { type: String },
     owner: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    viewerToken: { type: String },
+    callId: { type: String }
 });
 
 const StreamModel: Model<IStream> = mongoose.model<IStream>("Stream", StreamSchema);

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const keys = require("../config/keys");
+const keys = require("./keys");
 const { database } = keys;
 
 

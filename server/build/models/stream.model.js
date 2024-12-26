@@ -42,6 +42,7 @@ const StreamSchema = new mongoose_1.Schema({
     rtmpURL: { type: String },
     streamKey: { type: String },
     owner: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "User" }],
+    viewerToken: { type: String }
 });
 const StreamModel = mongoose_1.default.model("Stream", StreamSchema);
 exports.StreamModel = StreamModel;
