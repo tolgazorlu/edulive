@@ -33,11 +33,11 @@ const { client, call } = require("../config/stream")
 export const getStream = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params
-        const user = await UserModel.findOne({ ocid: req.params.ocid });
-        if (!user) {
-            return res.status(200).send(false)
+        const stream = await StreamModel.findOne({ slug });
+        if (!stream) {
+            return res.status(200).send("User not found!")
         }
-        return res.status(200).send(true)
+        return res.status(200).send(stream)
     } catch (error: any) {
         return console.log(error)
     }

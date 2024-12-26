@@ -36,11 +36,11 @@ const { client, call } = require("../config/stream");
 const getStream = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { slug } = req.params;
-        const user = yield user_model_1.UserModel.findOne({ ocid: req.params.ocid });
-        if (!user) {
-            return res.status(200).send(false);
+        const stream = yield stream_model_1.StreamModel.findOne({ slug });
+        if (!stream) {
+            return res.status(200).send("User not found!");
         }
-        return res.status(200).send(true);
+        return res.status(200).send(stream);
     }
     catch (error) {
         return console.log(error);
@@ -75,7 +75,7 @@ const createStream = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             },
         });
         console.log(response);
-        const call_cid = response.call.cid;
+        const callId = response.call.id;
         const viewerToken = client.generateCallToken({ user_id: "tolga" });
         const newSlug = slugify(req.body.title, {
             replacement: '-',
@@ -88,7 +88,8 @@ const createStream = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             rtmpURL: response.call.ingress.rtmp.address,
             streamKey: userToken,
             owner: user,
-            viewerToken: viewerToken
+            viewerToken: viewerToken,
+            callId: callId
         });
         yield newStream.save();
         return res.status(201).json(newStream);

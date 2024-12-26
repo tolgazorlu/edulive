@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import apiClient from "./client";
 
 export const useCreateStreamMutation = () =>
@@ -15,4 +15,11 @@ export const useCreateStreamMutation = () =>
             (
                 await apiClient.post(`/stream/create/${ocid}`, { title, description })
             ).data,
+    });
+
+export const useGetStreamInformation = (slug: string) =>
+    useQuery({
+        queryKey: ["stream", slug],
+        queryFn: async () =>
+            (await apiClient.get(`/stream/${slug}`)).data,
     });
