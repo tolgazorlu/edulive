@@ -44,12 +44,6 @@ function CreateClass() {
     }
   };
 
-  // const streamURL =
-  //   "rtmps://ingress.stream-io-video.com:443/t2ghjyj5cz34.livestream.livestream_09441999-7cb6-4917-ae88-3ab34f87d6a7";
-
-  // const streamKey =
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidG9sZ2EzIiwiaWF0IjoxNzM1MTIzOTQ1fQ.0q37DXPIedC3GFBxRuyE_jeDFncC3cX8BTS3cqV6lP8";
-
   const navigate = useNavigate();
 
   return (
@@ -78,7 +72,25 @@ function CreateClass() {
           </CardHeader>
           <CardBody>
             <form action='#' className='flex flex-col gap-4'>
-              <Button onClick={handleCreateStream}>Create new Stream</Button>
+              <Input
+                name='title'
+                value={title}
+                className=' text-white'
+                label='Enter a title'
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+              <Textarea
+                name='description'
+                value={description}
+                className=' text-white'
+                label='Some descriptions'
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+              />
+              <Button onClick={handleCreateStream}>Get Stream Keys</Button>
               <div className='flex items-center gap-2 justify-between'>
                 <Typography className='text-sm'>
                   {" "}
@@ -123,24 +135,6 @@ function CreateClass() {
                   </IconButton>
                 </Tooltip>
               </div>
-              <Input
-                name='title'
-                value={title}
-                className=' text-white'
-                label='Enter a title'
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              />
-              <Textarea
-                name='description'
-                value={description}
-                className=' text-white'
-                label='Some descriptions'
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              />
               <Button
                 onClick={() => {
                   navigate("/class/" + slug);

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const keys = require("../config/keys");
+const keys = require("./keys");
 const { database } = keys;
 const connectToDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {

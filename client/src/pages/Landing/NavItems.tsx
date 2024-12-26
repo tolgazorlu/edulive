@@ -54,7 +54,7 @@ const NavItems = () => {
     <>
       {items.map((item: ItemType, index: number) => {
         return (
-          <>
+          <div key={index}>
             {item.childs ? (
               <Menu
                 open={isMenuOpen}
@@ -62,13 +62,9 @@ const NavItems = () => {
                 offset={{ mainAxis: 20 }}
                 placement='bottom'
                 allowHover={true}
-                key={index}
               >
                 <MenuHandler>
-                  <ListItem
-                    className='flex gap-2 items-center text-gray-500 p-0 hover:text-deep-orange-500 text-md focus:bg-transparent hover:bg-transparent'
-                    key={index}
-                  >
+                  <ListItem className='flex gap-2 items-center text-gray-500 p-0 hover:text-deep-orange-500 text-md focus:bg-transparent hover:bg-transparent'>
                     {item.icon}
                     {item.title}
                     <ChevronDownIcon
@@ -91,7 +87,7 @@ const NavItems = () => {
                 </NavItem>
               </div>
             )}
-          </>
+          </div>
         );
       })}
     </>
