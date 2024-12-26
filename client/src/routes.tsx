@@ -1,11 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "./Layout/HomeLayout";
-import LandingPage from "./pages/Landing";
-import JoinClass from "./pages/JoinClass";
 import CreateClass from "./pages/CreateClass";
 import { LoginCallBack } from "@opencampus/ocid-connect-js";
 import LiveClass from "./pages/LiveClass";
-import CreateUser from "./pages/CreateUser";
+import HomePage from "./pages/Home";
+import SettingsLayout from "./pages/Profile/ProfileLayout";
 
 const onLoginSuccess = () => {
   console.log("success");
@@ -28,15 +27,11 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <HomePage />,
       },
       {
-        path: "/create-user",
-        element: <CreateUser />,
-      },
-      {
-        path: "/join-class",
-        element: <JoinClass />,
+        path: "/account",
+        element: <SettingsLayout />,
       },
       {
         path: "/create-class",

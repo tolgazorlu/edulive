@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetStreamInformation } from "../..//api/stream";
-import { Typography } from "@material-tailwind/react";
 import {
   LivestreamPlayer,
   StreamCall,
@@ -71,31 +70,21 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
           <div className='my-4'>
             <div className='flex gap-2 items-center'>
               <EyeIcon className='text-pink-500' />
-              <Typography className='text-pink-500'>
-                Viewer: {participantCount}
-              </Typography>
+              <span className='text-pink-500'>Viewer: {participantCount}</span>
             </div>
-            <Typography
-              variant='h2'
-              color='white'
-              className='my-4 font-black text-4xl !leading-snug'
-            >
+            <span className='my-4 font-black text-4xl !leading-snug'>
               {streamInformation.title}
-            </Typography>
-            <Typography
-              variant='paragraph'
-              color='white'
-              className='my-4 font-black !leading-snug'
-            >
+            </span>
+            <span className='my-4 font-black !leading-snug'>
               {streamInformation.description}
-            </Typography>
+            </span>
           </div>
         </>
       ) : (
         <div className='w-full h-full bg-black flex items-center justify-center rounded-lg'>
-          <Typography variant='h3' className='font-poppins uppercase'>
+          <span className='font-poppins uppercase'>
             The Live Streaming not started yet!
-          </Typography>
+          </span>
         </div>
       )}
     </>
