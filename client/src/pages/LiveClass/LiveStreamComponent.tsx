@@ -64,9 +64,8 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
     <>
       {firstParticipant ? (
         <>
-          <div className='w-full bg-black flex items-center justify-center rounded-xl'>
-            <LivestreamPlayer callType='livestream' callId={callId} />
-          </div>
+          <LivestreamPlayer callType='livestream' callId={callId} />
+
           <div className='my-4'>
             <div className='flex gap-2 items-center'>
               <EyeIcon className='text-pink-500' />
@@ -81,8 +80,8 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
           </div>
         </>
       ) : (
-        <div className='w-full h-full bg-black flex items-center justify-center rounded-lg'>
-          <span className='font-poppins uppercase'>
+        <div className='w-full h-96 bg-black flex items-center justify-center rounded-lg'>
+          <span className='font-poppins uppercase text-white'>
             The Live Streaming not started yet!
           </span>
         </div>

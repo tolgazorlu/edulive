@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import {
   Menubar,
   MenubarContent,
@@ -33,26 +34,30 @@ export function Menu() {
           edulive
         </MenubarTrigger>
       </MenubarMenu>
-      <MenubarMenu>
-        <MenubarTrigger>Account</MenubarTrigger>
-        <MenubarContent forceMount>
-          <MenubarLabel inset>{OCId}</MenubarLabel>
-          <MenubarSeparator />
-          <MenubarRadioGroup value='etherium'>
-            <MenubarRadioItem value='address'>
-              {ethAddress?.slice(0, 10)}...{ethAddress?.slice(-4)}
-            </MenubarRadioItem>
-          </MenubarRadioGroup>
-          <MenubarSeparator />
-          <MenubarItem inset onClick={() => navigate("/account")}>
-            Manage Account
-          </MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem onClick={handleLogout} inset className='text-red-500'>
-            Log out
-          </MenubarItem>
-        </MenubarContent>
-      </MenubarMenu>
+
+      <div className='flex'>
+        <MenubarMenu>
+          <MenubarTrigger>Account</MenubarTrigger>
+          <ModeToggle />
+          <MenubarContent forceMount>
+            <MenubarLabel inset>{OCId}</MenubarLabel>
+            <MenubarSeparator />
+            <MenubarRadioGroup value='etherium'>
+              <MenubarRadioItem value='address'>
+                {ethAddress?.slice(0, 10)}...{ethAddress?.slice(-4)}
+              </MenubarRadioItem>
+            </MenubarRadioGroup>
+            <MenubarSeparator />
+            <MenubarItem inset onClick={() => navigate("/account")}>
+              Manage Account
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem onClick={handleLogout} inset className='text-red-500'>
+              Log out
+            </MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </div>
     </Menubar>
   );
 }
