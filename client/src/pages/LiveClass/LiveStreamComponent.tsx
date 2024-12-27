@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button } from "@/components/ui/button";
 import { useGetStreamInformation } from "../..//api/stream";
 import {
   LivestreamPlayer,
@@ -8,7 +9,7 @@ import {
   useCallStateHooks,
   User,
 } from "@stream-io/video-react-sdk";
-import { EyeIcon } from "lucide-react";
+import { HeartHandshakeIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -63,27 +64,89 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
   return (
     <>
       {firstParticipant ? (
-        <>
-          <LivestreamPlayer callType='livestream' callId={callId} />
-
-          <div className='my-4'>
-            <div className='flex gap-2 items-center'>
-              <EyeIcon className='text-pink-500' />
-              <span className='text-pink-500'>Viewer: {participantCount}</span>
-            </div>
-            <span className='my-4 font-black text-4xl !leading-snug'>
+        <div>
+          <div className='w-full h-96 bg-gray-900 flex items-center justify-center rounded-lg overflow-hidden'>
+            <LivestreamPlayer
+              layoutProps={{
+                showDuration: false,
+                showParticipantCount: false,
+                showLiveBadge: false,
+                enableFullScreen: true,
+              }}
+              callType='livestream'
+              callId={callId}
+            />
+          </div>
+          <div className='my-10 flex flex-col gap-2 bg-white z-50'>
+            <span className='font-black text-xl !leading-snug'>
               {streamInformation.title}
             </span>
-            <span className='my-4 font-black !leading-snug'>
-              {streamInformation.description}
+            <div className='flex gap-2 justify-between'>
+              <div className='flex gap-2'>
+                <div className='p-2 bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full'>
+                  <span>TZ</span>
+                </div>
+                <div className='flex flex-col justify-center'>
+                  <span className='text-sm font-bold'>Tolga Zorlu</span>
+                  <span className='text-sm'>Software Engineer</span>
+                </div>
+              </div>
+              <div className='flex gap-2'>
+                <Button className='bg-red-500'>Follow</Button>
+                <Button className='bg-gradient-to-br from-green-500 to-teal-500'>
+                  Support <HeartHandshakeIcon />
+                </Button>
+              </div>
+            </div>
+            <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1'>
+              <span className='text-green-500'>
+                {participantCount} people are watching
+              </span>
+              <span className='!leading-snug'>
+                Our on-chain education network is formed with key players within
+                education and Web3 who are dedicated to building on EDU Chain.
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className='w-full h-96 bg-gray-900 flex items-center justify-center rounded-lg'>
+            <span className='font-poppins uppercase text-white'>
+              The Live Streaming not started yet!
             </span>
           </div>
-        </>
-      ) : (
-        <div className='w-full h-96 bg-black flex items-center justify-center rounded-lg'>
-          <span className='font-poppins uppercase text-white'>
-            The Live Streaming not started yet!
-          </span>
+          <div className='my-2 flex flex-col gap-2 bg-white'>
+            <span className='font-black text-xl !leading-snug'>
+              KELİME USTALARI KARŞI KARŞIYA! | CODENAMES
+            </span>
+            <div className='flex gap-2 justify-between'>
+              <div className='flex gap-2'>
+                <div className='p-2 bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full'>
+                  <span>TZ</span>
+                </div>
+                <div className='flex flex-col justify-center'>
+                  <span className='text-sm font-bold'>Tolga Zorlu</span>
+                  <span className='text-sm'>Software Engineer</span>
+                </div>
+              </div>
+              <div className='flex gap-2'>
+                <Button className='bg-red-500'>Follow</Button>
+                <Button className='bg-gradient-to-br from-green-500 to-teal-500'>
+                  Support <HeartHandshakeIcon />
+                </Button>
+              </div>
+            </div>
+            <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1'>
+              <span className='text-green-500'>
+                {participantCount} people are watching
+              </span>
+              <span className='!leading-snug'>
+                Our on-chain education network is formed with key players within
+                education and Web3 who are dedicated to building on EDU Chain.
+              </span>
+            </div>
+          </div>
         </div>
       )}
     </>

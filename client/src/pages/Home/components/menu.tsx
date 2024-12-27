@@ -27,7 +27,7 @@ export function Menu() {
   const navigate = useNavigate();
 
   return (
-    <Menubar className='rounded-none border-b border-none px-2 lg:px-4 flex justify-between'>
+    <Menubar className='rounded-none border-b border-none px-2 lg:px-4 flex justify-between z-50'>
       <MenubarMenu>
         <MenubarTrigger className='text-lg font-semibold flex gap-1 text-primary'>
           <RadioIcon />

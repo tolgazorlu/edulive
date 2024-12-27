@@ -83,3 +83,7 @@
     --chart-5: 340 75% 55%;
   }
 }
+
+.str-video__livestream-layout__overlay {
+  flex: none !important;
+}

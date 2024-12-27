@@ -15,8 +15,8 @@ import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
 const apiKey = "dz5f4d5kzrue";
-const userId = "silent-sea-7";
-const userName = "silent";
+const userId = "frosty-flower-6";
+const userName = "frosty";
 const userToken =
   "***REMOVED***";
 
