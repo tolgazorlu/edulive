@@ -33,7 +33,7 @@ const { client, call } = require("../config/stream")
 export const getStream = async (req: Request, res: Response) => {
     try {
         const { slug } = req.params
-        const stream = await StreamModel.findOne({ slug });
+        const stream = await StreamModel.findOne({ slug }).populate("owner");
         if (!stream) {
             return res.status(200).send("User not found!")
         }

@@ -18,7 +18,7 @@ const StreamSchema: Schema = new Schema({
     slug: { type: String },
     rtmpURL: { type: String },
     streamKey: { type: String },
-    owner: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
     viewerToken: { type: String },
     callId: { type: String }
 });
