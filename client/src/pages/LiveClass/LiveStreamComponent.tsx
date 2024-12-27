@@ -77,18 +77,22 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               callId={callId}
             />
           </div>
-          <div className='my-10 flex flex-col gap-2 bg-white z-50'>
+          <div className='flex flex-col gap-2 bg-white z-50'>
             <span className='font-black text-xl !leading-snug'>
               {streamInformation.title}
             </span>
             <div className='flex gap-2 justify-between'>
               <div className='flex gap-2'>
                 <div className='p-2 bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full'>
-                  <span>TZ</span>
+                  <span>{streamInformation?.owner.name?.slice(0, 2)}</span>
                 </div>
                 <div className='flex flex-col justify-center'>
-                  <span className='text-sm font-bold'>Tolga Zorlu</span>
-                  <span className='text-sm'>Software Engineer</span>
+                  <span className='text-sm font-bold'>
+                    {streamInformation?.owner.name}
+                  </span>
+                  <span className='text-sm'>
+                    {streamInformation?.owner.job || "Teacher"}
+                  </span>
                 </div>
               </div>
               <div className='flex gap-2'>
@@ -103,8 +107,7 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                 {participantCount} people are watching
               </span>
               <span className='!leading-snug'>
-                Our on-chain education network is formed with key players within
-                education and Web3 who are dedicated to building on EDU Chain.
+                {streamInformation?.description}
               </span>
             </div>
           </div>
