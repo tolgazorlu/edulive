@@ -15,10 +15,10 @@ import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
 const apiKey = "dz5f4d5kzrue";
-const userId = "silent-sea-7";
-const userName = "silent";
+const userId = "frosty-flower-6";
+const userName = "frosty";
 const userToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2lsZW50LXNlYS03IiwiZXhwIjoxNzM1MjI4MzM5fQ.gHyoP9NmS2sRo-kPi3KW_sj4HOqmXz-lHHRvzUMtreE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZnJvc3R5LWZsb3dlci02IiwiZXhwIjoxNzM1Mjk0MTA5fQ.Z0WWs_JTFiLA-aGGWwmXV7x7wGQe4eiC8SEWtWxiYqw";
 
 const user: User = {
   id: userId,
