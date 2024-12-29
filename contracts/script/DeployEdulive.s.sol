@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Oned} from "../src/Oned.sol";
+import {Edulive} from "../src/Edulive.sol";
 
 contract DeployDacospace is Script {
     function run() external {
@@ -13,12 +13,12 @@ contract DeployDacospace is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // Deploy the Greeter contract
-        Oned oned = new Oned();
+        Edulive edulive = new Edulive();
 
         // End broadcasting the transaction
         vm.stopBroadcast();
 
         // Log the address of the deployed contract
-        console.log("Oned deployed to:", address(oned));
+        console.log("Edulive deployed to:", address(edulive));
     }
 }

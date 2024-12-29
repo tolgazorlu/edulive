@@ -12,6 +12,9 @@ import {
 import { HeartHandshakeIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useContract } from "@/hooks/useContract";
+import { parseEther } from "ethers";
+import { toast } from "sonner";
 
 const LiveStreamComponent = () => {
   const { slug } = useParams();
@@ -56,10 +59,40 @@ const LiveStreamComponent = () => {
 
 const LivestreamView = ({ callId, streamInformation }: any) => {
   const { useParticipantCount, useParticipants } = useCallStateHooks();
+  const { contract } = useContract();
+  const [donationAmount, setDonationAmount] = useState("");
 
   const participantCount = useParticipantCount();
 
   const [firstParticipant] = useParticipants();
+
+  const handleDonation = async () => {
+    try {
+      if (!contract || !streamInformation) {
+        toast.error("Contract or stream information not available");
+        return;
+      }
+
+      if (!donationAmount || parseFloat(donationAmount) <= 0) {
+        toast.error("Please enter a valid donation amount");
+        return;
+      }
+
+      const toastId = toast.loading("Processing donation...");
+
+      const tx = await contract.donate(streamInformation.id, {
+        value: parseEther(donationAmount)
+      });
+
+      await tx.wait();
+      toast.dismiss(toastId);
+      toast.success("Donation sent successfully!");
+      setDonationAmount("");
+    } catch (error: any) {
+      console.error("Donation error:", error);
+      toast.error(error.message || "Failed to send donation");
+    }
+  };
 
   return (
     <>
@@ -97,9 +130,21 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               </div>
               <div className='flex gap-2'>
                 <Button className='bg-red-500'>Follow</Button>
-                <Button className='bg-gradient-to-br from-green-500 to-teal-500'>
-                  Support <HeartHandshakeIcon />
-                </Button>
+                <div className='flex gap-2'>
+                  <input
+                    type="number"
+                    placeholder="Amount in EDU"
+                    value={donationAmount}
+                    onChange={(e) => setDonationAmount(e.target.value)}
+                    className="px-2 py-1 border rounded"
+                  />
+                  <Button 
+                    onClick={handleDonation}
+                    className='bg-gradient-to-br from-green-500 to-teal-500'
+                  >
+                    Support <HeartHandshakeIcon />
+                  </Button>
+                </div>
               </div>
             </div>
             <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1'>
