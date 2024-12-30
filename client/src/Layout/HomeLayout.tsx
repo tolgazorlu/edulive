@@ -1,7 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { Toaster } from "sonner";
 
 const HomeLayout = () => {
-  return <Outlet />;
+  return <>
+  <Toaster />
+  <Outlet />
+  </>
 };
 
 export default HomeLayout;

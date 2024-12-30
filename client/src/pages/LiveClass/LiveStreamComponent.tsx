@@ -15,6 +15,8 @@ import { useParams } from "react-router-dom";
 import { useContract } from "@/hooks/useContract";
 import { parseEther } from "ethers";
 import { toast } from "sonner";
+import { DonationForm } from '@/components/DonationForm';
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 
 const LiveStreamComponent = () => {
   const { slug } = useParams();
@@ -30,6 +32,8 @@ const LiveStreamComponent = () => {
 
   const [token, setToken] = useState("");
   const [callId, setCallId] = useState("");
+
+  const { OCId } = useOCAuth();
 
   useEffect(() => {
     if (streamInformation) {
@@ -53,6 +57,15 @@ const LiveStreamComponent = () => {
           />
         </StreamCall>
       </StreamVideo>
+      
+      {streamInformation && OCId && (
+        <div className="mt-4">
+          <DonationForm 
+            streamId={streamInformation.id} 
+            streamerAddress={streamInformation.owner.edu_address}
+          />
+        </div>
+      )}
     </div>
   );
 };
