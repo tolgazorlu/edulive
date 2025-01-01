@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import EduLiveABI from '../contracts/Edulive.json';
 
-const CONTRACT_ADDRESS = "0x1ea42adDA6AeB0403ABdc2F237Ab9f0ABB7BdD47"; // Replace with the new deployed contract address
+const CONTRACT_ADDRESS = "0xe4f764783dD165b275BFdbA20B5E95805f697098"; // Replace with the new deployed contract address
 
 export function useContract() {
     const [contract, setContract] = useState<ethers.Contract | null>(null);

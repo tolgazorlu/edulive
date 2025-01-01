@@ -1,11 +1,22 @@
 import { useState } from 'react';
 import { useContract } from '@/hooks/useContract';
 import { parseEther } from 'ethers';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
 import { useOCAuth } from "@opencampus/ocid-connect-js";
 
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { HeartHandshakeIcon } from 'lucide-react';
 interface DonationFormProps {
   streamId: number;
   streamerAddress: string;
@@ -61,23 +72,55 @@ export function DonationForm({ streamId, streamerAddress }: DonationFormProps) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex gap-2">
-        <Input
-          type="number"
-          placeholder="Amount in EDU"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          disabled={isLoading}
-        />
-        <Button 
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className='bg-gradient-to-br from-green-500 to-teal-500'>
+            Support <HeartHandshakeIcon />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Support</DialogTitle>
+          <DialogDescription>
+            Donate to the streamer
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input
+              id="name"
+              defaultValue="Pedro Duarte"
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Donation Amount
+            </Label>
+            <Input
+              type="number"
+              placeholder="Amount in EDU"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              disabled={isLoading}
+              defaultValue="0.01"
+              className="col-span-3"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button 
           onClick={handleDonate}
           disabled={isLoading || !ethAddress}
           className="bg-gradient-to-br from-green-500 to-teal-500"
         >
           {!ethAddress ? 'Connect Wallet' : 'Donate'}
         </Button>
-      </div>
-    </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 } 

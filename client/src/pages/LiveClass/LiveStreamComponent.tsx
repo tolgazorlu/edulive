@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom";
 import { useContract } from "@/hooks/useContract";
 import { parseEther } from "ethers";
 import { toast } from "sonner";
-import { DonationForm } from '@/components/DonationForm';
+import { DonationForm } from "@/components/DonationForm";
 import { useOCAuth } from "@opencampus/ocid-connect-js";
 
 const LiveStreamComponent = () => {
@@ -32,8 +32,6 @@ const LiveStreamComponent = () => {
 
   const [token, setToken] = useState("");
   const [callId, setCallId] = useState("");
-
-  const { OCId } = useOCAuth();
 
   useEffect(() => {
     if (streamInformation) {
@@ -57,20 +55,12 @@ const LiveStreamComponent = () => {
           />
         </StreamCall>
       </StreamVideo>
-      
-      {streamInformation && OCId && (
-        <div className="mt-4">
-          <DonationForm 
-            streamId={streamInformation.id} 
-            streamerAddress={streamInformation.owner.edu_address}
-          />
-        </div>
-      )}
     </div>
   );
 };
 
 const LivestreamView = ({ callId, streamInformation }: any) => {
+  const { OCId } = useOCAuth();
   const { useParticipantCount, useParticipants } = useCallStateHooks();
   const { contract } = useContract();
   const [donationAmount, setDonationAmount] = useState("");
@@ -94,7 +84,7 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
       const toastId = toast.loading("Processing donation...");
 
       const tx = await contract.donate(streamInformation.id, {
-        value: parseEther(donationAmount)
+        value: parseEther(donationAmount),
       });
 
       await tx.wait();
@@ -144,19 +134,12 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               <div className='flex gap-2'>
                 <Button className='bg-red-500'>Follow</Button>
                 <div className='flex gap-2'>
-                  <input
-                    type="number"
-                    placeholder="Amount in EDU"
-                    value={donationAmount}
-                    onChange={(e) => setDonationAmount(e.target.value)}
-                    className="px-2 py-1 border rounded"
-                  />
-                  <Button 
-                    onClick={handleDonation}
-                    className='bg-gradient-to-br from-green-500 to-teal-500'
-                  >
-                    Support <HeartHandshakeIcon />
-                  </Button>
+                  {streamInformation && OCId && (
+                    <DonationForm
+                      streamId={streamInformation.id}
+                      streamerAddress={streamInformation.owner.edu_address}
+                    />
+                  )}
                 </div>
               </div>
             </div>
