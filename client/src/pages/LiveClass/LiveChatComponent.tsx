@@ -15,9 +15,9 @@ import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
 const apiKey = 'dz5f4d5kzrue';
-const userId = 'tiny-shadow-9';
-const userName = 'tiny';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidGlueS1zaGFkb3ctOSIsImV4cCI6MTczNTU5Njk5OX0.rcW95YSUOpdeKLcY-wHTQGbkBii0pNQAwDw9MDEcznA';
+const userId = 'bitter-fog-8';
+const userName = 'bitter';
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYml0dGVyLWZvZy04IiwiZXhwIjoxNzM1NzM3NTc4fQ.qw_gfdXV6X9U1-SuCvSeh3mRJhyUozCzFCpF9-9mfuo';
 
 const user: User = {
   id: userId,
