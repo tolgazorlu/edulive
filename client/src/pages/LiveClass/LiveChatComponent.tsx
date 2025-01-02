@@ -14,10 +14,11 @@ import {
 import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
-const apiKey = 'dz5f4d5kzrue';
-const userId = 'bitter-fog-8';
-const userName = 'bitter';
-const userToken = '***REMOVED***';
+const apiKey = "dz5f4d5kzrue";
+const userId = "rapid-hat-8";
+const userName = "rapid";
+const userToken =
+  "***REMOVED***";
 
 const user: User = {
   id: userId,
