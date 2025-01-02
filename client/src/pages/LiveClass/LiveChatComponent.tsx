@@ -14,10 +14,11 @@ import {
 import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
-const apiKey = 'dz5f4d5kzrue';
-const userId = 'bitter-fog-8';
-const userName = 'bitter';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYml0dGVyLWZvZy04IiwiZXhwIjoxNzM1NzM3NTc4fQ.qw_gfdXV6X9U1-SuCvSeh3mRJhyUozCzFCpF9-9mfuo';
+const apiKey = "dz5f4d5kzrue";
+const userId = "rapid-hat-8";
+const userName = "rapid";
+const userToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmFwaWQtaGF0LTgiLCJleHAiOjE3MzU3NjM0Nzl9.fTGcPOZ1XkCsB3Sisr4CvczLh8bqBtOKBlqjNgpKfLE";
 
 const user: User = {
   id: userId,
