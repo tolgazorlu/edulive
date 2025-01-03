@@ -42,7 +42,9 @@ export function Menu() {
 
       <div className='flex'>
         <MenubarMenu>
-          <MenubarTrigger>Account</MenubarTrigger>
+          <MenubarTrigger className='dark:text-gray-400'>
+            Account
+          </MenubarTrigger>
           <ModeToggle />
           <MenubarContent forceMount>
             <MenubarLabel inset>{OCId}</MenubarLabel>
