@@ -53,7 +53,7 @@ export function GoLiveDialog() {
           Go Live
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-[425px]'>
+      <DialogContent className='sm:max-w-[425px] text-secondary-foreground border-muted'>
         <DialogHeader>
           <DialogTitle>Go Live</DialogTitle>
           <DialogDescription>
@@ -92,6 +92,7 @@ export function GoLiveDialog() {
               }}
               size='sm'
               className='px-3'
+              variant={"outline"}
             >
               <span className='sr-only'>Copy</span>
               <CopyIcon />
@@ -111,6 +112,7 @@ export function GoLiveDialog() {
               onClick={() => {
                 navigator.clipboard.writeText(streamKey);
               }}
+              variant={"outline"}
               size='sm'
               className='px-3'
             >
