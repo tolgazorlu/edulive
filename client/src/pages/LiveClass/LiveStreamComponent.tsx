@@ -132,8 +132,8 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               callId={callId}
             />
           </div>
-          <div className='flex flex-col gap-2 bg-white z-50 mt-2'>
-            <span className='font-black text-xl !leading-snug'>
+          <div className='flex flex-col gap-2 z-50 mt-2'>
+            <span className='font-black text-xl !leading-snug dark:text-white'>
               {streamInformation.title}
             </span>
             <div className='flex gap-2 justify-between'>
@@ -142,10 +142,10 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                   <span>{streamInformation?.owner.name?.slice(0, 2)}</span>
                 </div>
                 <div className='flex flex-col justify-center'>
-                  <span className='text-sm font-bold'>
+                  <span className='text-sm font-bold dark:text-gray-400'>
                     {streamInformation?.owner.name}
                   </span>
-                  <span className='text-sm'>
+                  <span className='text-sm dark:text-gray-500'>
                     {streamInformation?.owner.job || "Teacher"}
                   </span>
                 </div>
@@ -170,11 +170,11 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                 </div>
               </div>
             </div>
-            <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1'>
+            <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1 dark:bg-gray-800'>
               <span className='text-green-500'>
                 {participantCount} people are watching
               </span>
-              <span className='!leading-snug whitespace-pre-wrap'>
+              <span className='!leading-snug whitespace-pre-wrap dark:text-gray-400'>
                 {streamInformation?.description}
               </span>
             </div>

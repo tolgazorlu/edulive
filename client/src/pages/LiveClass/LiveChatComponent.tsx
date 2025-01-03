@@ -13,6 +13,8 @@ import {
 
 import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
+import { useGetStreamInformation } from "@/api/stream";
+import { useParams } from "react-router-dom";
 
 const apiKey = "dz5f4d5kzrue";
 const userId = "solitary-unit-1";
@@ -27,6 +29,8 @@ const user: User = {
 };
 
 const LiveChatComponent = () => {
+  const { slug } = useParams();
+  const { data: stream } = useGetStreamInformation(slug as string);
   const [channel, setChannel] = useState<StreamChannel>();
   const client = useCreateChatClient({
     apiKey,
@@ -53,7 +57,7 @@ const LiveChatComponent = () => {
       <Chat client={client}>
         <Channel channel={channel}>
           <Window>
-            <ChannelHeader />
+            <ChannelHeader title={stream?.title} />
             <MessageList />
             <MessageInput />
           </Window>
