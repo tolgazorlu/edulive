@@ -43,7 +43,9 @@ const StreamSchema = new mongoose_1.Schema({
     streamKey: { type: String },
     owner: { type: mongoose_1.Schema.Types.ObjectId, ref: "User" },
     viewerToken: { type: String },
-    callId: { type: String }
+    callId: { type: String },
+    isLive: { type: Boolean, default: false },
+    createdAt: { type: Date, default: Date.now }
 });
 const StreamModel = mongoose_1.default.model("Stream", StreamSchema);
 exports.StreamModel = StreamModel;

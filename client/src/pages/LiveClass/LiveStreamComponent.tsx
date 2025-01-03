@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
-import { useGetStreamInformation } from "../..//api/stream";
+import {
+  useGetStreamInformation,
+  useUpdateStreamStatus,
+} from "../..//api/stream";
 import {
   LivestreamPlayer,
   StreamCall,
@@ -44,6 +47,20 @@ const LiveStreamComponent = () => {
   const call = client.call("livestream", callId);
   call.join({ create: true });
 
+  const { mutate: updateStatus } = useUpdateStreamStatus();
+
+  const handleEndStream = () => {
+    updateStatus(
+      { streamId: streamInformation._id, isLive: false },
+      {
+        onSuccess: () => {
+          toast.success("Stream ended successfully");
+          window.location.href = "/";
+        },
+      }
+    );
+  };
+
   return (
     <div className='col-span-9 h-auto rounded-xl'>
       <StreamVideo client={client}>
@@ -55,6 +72,15 @@ const LiveStreamComponent = () => {
           />
         </StreamCall>
       </StreamVideo>
+      {streamInformation?.owner._id === user.id && (
+        <Button
+          variant='destructive'
+          onClick={handleEndStream}
+          className='absolute top-4 right-4 z-10'
+        >
+          End Stream
+        </Button>
+      )}
     </div>
   );
 };
@@ -113,7 +139,7 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               callId={callId}
             />
           </div>
-          <div className='flex flex-col gap-2 bg-white z-50'>
+          <div className='flex flex-col gap-2 bg-white z-50 mt-2'>
             <span className='font-black text-xl !leading-snug'>
               {streamInformation.title}
             </span>
@@ -147,7 +173,7 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               <span className='text-green-500'>
                 {participantCount} people are watching
               </span>
-              <span className='!leading-snug'>
+              <span className='!leading-snug whitespace-pre-wrap'>
                 {streamInformation?.description}
               </span>
             </div>
