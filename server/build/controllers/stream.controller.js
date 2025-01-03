@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createStream = exports.getStream = void 0;
+exports.updateStreamStatus = exports.getActiveStreams = exports.createStream = exports.getStream = void 0;
 const user_model_1 = require("../models/user.model");
 const slugify = require('slugify');
 const stream_model_1 = require("../models/stream.model");
@@ -89,7 +89,8 @@ const createStream = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             streamKey: userToken,
             owner: user,
             viewerToken: viewerToken,
-            callId: callId
+            callId: callId,
+            isLive: true
         });
         yield newStream.save();
         return res.status(201).json(newStream);
@@ -99,3 +100,49 @@ const createStream = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.createStream = createStream;
+/**
+ * @route GET /v1/stream/active
+ * @desc Get all active and past streams
+ */
+const getActiveStreams = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Get live streams
+        const liveStreams = yield stream_model_1.StreamModel.find({ isLive: true })
+            .populate("owner")
+            .sort({ createdAt: -1 });
+        // Get past streams
+        const pastStreams = yield stream_model_1.StreamModel.find({ isLive: false })
+            .populate("owner")
+            .sort({ createdAt: -1 })
+            .limit(10); // Limit to last 10 streams
+        return res.status(200).json({
+            liveStreams,
+            pastStreams
+        });
+    }
+    catch (error) {
+        console.error("Error fetching streams:", error);
+        return res.status(500).json({ error: "Failed to fetch streams" });
+    }
+});
+exports.getActiveStreams = getActiveStreams;
+/**
+ * @route PATCH /v1/stream/:id/status
+ * @desc Update stream live status
+ */
+const updateStreamStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { isLive } = req.body;
+        const stream = yield stream_model_1.StreamModel.findByIdAndUpdate(id, { isLive }, { new: true });
+        if (!stream) {
+            return res.status(404).json({ error: "Stream not found" });
+        }
+        return res.status(200).json(stream);
+    }
+    catch (error) {
+        console.error("Error updating stream status:", error);
+        return res.status(500).json({ error: "Failed to update stream status" });
+    }
+});
+exports.updateStreamStatus = updateStreamStatus;

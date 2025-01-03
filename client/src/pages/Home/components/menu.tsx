@@ -29,7 +29,7 @@ export function Menu() {
   return (
     <Menubar className='rounded-none border-b border-none px-2 lg:px-4 flex justify-between z-50'>
       <MenubarMenu>
-        <MenubarTrigger className='text-lg font-semibold flex gap-1 text-primary'>
+        <MenubarTrigger className='text-lg font-semibold flex gap-1 text-[#00948f]'>
           <RadioIcon />
           edulive
         </MenubarTrigger>

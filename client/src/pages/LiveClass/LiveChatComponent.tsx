@@ -15,10 +15,10 @@ import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
 const apiKey = "dz5f4d5kzrue";
-const userId = "rapid-hat-8";
-const userName = "rapid";
+const userId = "mute-dew-2";
+const userName = "mute";
 const userToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicmFwaWQtaGF0LTgiLCJleHAiOjE3MzU3NjM0Nzl9.fTGcPOZ1XkCsB3Sisr4CvczLh8bqBtOKBlqjNgpKfLE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibXV0ZS1kZXctMiIsImV4cCI6MTczNTg1MDk1MH0.ZjzKUC81PIgxTYjCg_Xcks-jshy370CpuGn9tdap3KQ";
 
 const user: User = {
   id: userId,

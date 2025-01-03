@@ -1,4 +1,5 @@
 import { PlusCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 import {
@@ -20,6 +21,8 @@ interface AlbumArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
   aspectRatio?: "portrait" | "square";
   width?: number;
   height?: number;
+  onClick?: () => void;
+  isLive?: boolean;
 }
 
 export function AlbumArtwork({
@@ -28,13 +31,26 @@ export function AlbumArtwork({
   width,
   height,
   className,
+  onClick,
+  isLive,
   ...props
 }: AlbumArtworkProps) {
   return (
-    <div className={cn("space-y-3", className)} {...props}>
+    <div className={cn("space-y-3 relative", className)} {...props}>
+      {isLive && (
+        <div className='absolute top-2 right-2 z-10'>
+          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
+            <span className='w-2 h-2 mr-1 rounded-full bg-red-400 animate-pulse' />
+            Live
+          </span>
+        </div>
+      )}
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className='overflow-hidden rounded-md'>
+          <div
+            className='overflow-hidden rounded-md cursor-pointer'
+            onClick={onClick}
+          >
             <img
               src={album.cover}
               alt={album.name}

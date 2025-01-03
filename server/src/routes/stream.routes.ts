@@ -1,12 +1,16 @@
 import { Router } from 'express';
 import {
     createStream,
-    getStream
+    getStream,
+    getActiveStreams,
+    updateStreamStatus
 } from '../controllers/stream.controller';
 const router: Router = require('express').Router();
 
-// router.get('/user/:ocid', getUserStreamInformation);
-router.get('/:slug', getStream);
+// The order matters - put more specific routes first
+router.get('/active', getActiveStreams);
 router.post('/create/:ocid', createStream);
+router.get('/:slug', getStream);
+router.patch('/:id/status', updateStreamStatus);
 
 module.exports = router;
