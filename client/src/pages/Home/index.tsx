@@ -32,7 +32,7 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <div className='min-h-screen dark:bg-background'>
       <Menu />
       <div className='border-t dark:border-t-secondary'>
         <div className='bg-background'>
@@ -156,7 +156,7 @@ export default function HomePage() {
                                           artist: stream.owner.name,
                                           cover: getRandomImage(),
                                         }}
-                                        className='w-[250px]'
+                                        className='w-[250px] dark:text-secondary-foreground'
                                         aspectRatio='portrait'
                                         width={250}
                                         height={330}
