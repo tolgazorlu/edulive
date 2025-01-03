@@ -15,10 +15,10 @@ import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
 
 const apiKey = "dz5f4d5kzrue";
-const userId = "mute-dew-2";
-const userName = "mute";
+const userId = "solitary-unit-1";
+const userName = "solitary";
 const userToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibXV0ZS1kZXctMiIsImV4cCI6MTczNTg1MDk1MH0.ZjzKUC81PIgxTYjCg_Xcks-jshy370CpuGn9tdap3KQ";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic29saXRhcnktdW5pdC0xIiwiZXhwIjoxNzM1OTA4MTgxfQ.qmhtRAAgREPhypRSBao6MmPKs07hHQIrerqqPG2Ehro";
 
 const user: User = {
   id: userId,

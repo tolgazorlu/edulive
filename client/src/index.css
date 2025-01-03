@@ -87,3 +87,74 @@
 .str-video__livestream-layout__overlay {
   flex: none !important;
 }
+
+/* Stream Chat Dark Theme Overrides */
+.dark {
+  --str-chat__primary-color: hsl(var(--primary));
+  --str-chat__active-primary-color: hsl(var(--primary));
+  --str-chat__surface-color: hsl(var(--background));
+  --str-chat__secondary-surface-color: hsl(var(--secondary));
+  --str-chat__primary-surface-color: hsl(var(--card));
+  --str-chat__primary-text-color: hsl(var(--foreground));
+  --str-chat__secondary-text-color: hsl(var(--muted-foreground));
+  --str-chat__border-color: hsl(var(--border));
+
+  /* Message bubbles */
+  --str-chat__message-bubble-background: hsl(var(--secondary));
+  --str-chat__message-bubble-color: hsl(var(--foreground));
+  --str-chat__own-message-bubble-background: hsl(var(--primary));
+
+  /* Message attachments */
+  --str-chat__message-attachment-background: hsl(var(--card));
+  --str-chat__message-attachment-color: hsl(var(--foreground));
+
+  /* Input box */
+  --str-chat__input-background: hsl(var(--background));
+  --str-chat__input-box-shadow: none;
+
+  /* Emoji picker */
+  --str-chat__emoji-picker-background: hsl(var(--background));
+  --str-chat__emoji-picker-color: hsl(var(--foreground));
+}
+
+/* Base theme overrides */
+.str-chat {
+  --str-chat__primary-color: hsl(var(--primary));
+  --str-chat__active-primary-color: hsl(var(--primary));
+  --str-chat__surface-color: hsl(var(--background));
+  --str-chat__secondary-surface-color: hsl(var(--secondary));
+  --str-chat__primary-surface-color: hsl(var(--card));
+  --str-chat__primary-text-color: hsl(var(--foreground));
+  --str-chat__secondary-text-color: hsl(var(--muted-foreground));
+  --str-chat__border-color: hsl(var(--border));
+}
+
+/* Additional specific overrides */
+.dark {
+  .str-chat__message--me .str-chat__message-simple-text-inner {
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Input area fixes */
+  .str-chat__input {
+    background: hsl(var(--background));
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  .str-chat__main-panel {
+    background: hsl(var(--background));
+  }
+  .str-chat__message-input {
+    background: hsl(var(--background));
+  }
+}
+
+.dark .str-chat__list {
+  background: hsl(var(--background));
+}
+
+.dark .str-chat__channel-header {
+  background: hsl(var(--background));
+  border-bottom: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+}
