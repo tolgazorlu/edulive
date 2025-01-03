@@ -2,6 +2,10 @@ export interface Album {
     name: string
     artist: string
     cover: string
+    avatarUrl?: string
+    category?: string
+    language?: string
+    viewerCount?: number
 }
 
 export const listenNowAlbums: Album[] = [

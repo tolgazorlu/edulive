@@ -23,6 +23,7 @@ interface AlbumArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: number;
   onClick?: () => void;
   isLive?: boolean;
+  viewerCount?: number;
 }
 
 export function AlbumArtwork({
@@ -33,77 +34,76 @@ export function AlbumArtwork({
   className,
   onClick,
   isLive,
+  viewerCount,
   ...props
-}: AlbumArtworkProps) {
+}: AlbumArtworkProps & { viewerCount?: number }) {
   return (
-    <div className={cn("space-y-3 relative", className)} {...props}>
-      {isLive && (
-        <div className='absolute top-2 right-2 z-10'>
-          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
-            <span className='w-2 h-2 mr-1 rounded-full bg-red-400 animate-pulse' />
-            Live
-          </span>
-        </div>
-      )}
-      <ContextMenu>
-        <ContextMenuTrigger>
-          <div
-            className='overflow-hidden rounded-md cursor-pointer'
-            onClick={onClick}
-          >
-            <img
-              src={album.cover}
-              alt={album.name}
-              width={width}
-              height={height}
-              className={cn(
-                "h-auto w-auto object-cover transition-all hover:scale-105",
-                aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
-              )}
-            />
+    <div
+      className={cn("space-y-2 relative group cursor-pointer", className)}
+      {...props}
+      onClick={onClick}
+    >
+      <div className='relative'>
+        {/* Live badge with viewer count */}
+        {isLive && (
+          <div className='absolute top-2 left-2 z-10 flex items-center gap-2'>
+            <span className='inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-red-500 text-white'>
+              LIVE
+            </span>
+            {viewerCount && (
+              <span className='text-white text-sm font-medium'>
+                {viewerCount.toLocaleString()} watching
+              </span>
+            )}
           </div>
-        </ContextMenuTrigger>
-        <ContextMenuContent className='w-40'>
-          <ContextMenuItem>Add to Library</ContextMenuItem>
-          <ContextMenuSub>
-            <ContextMenuSubTrigger>Add to Playlist</ContextMenuSubTrigger>
-            <ContextMenuSubContent className='w-48'>
-              <ContextMenuItem>
-                <PlusCircle className='mr-2 h-4 w-4' />
-                New Playlist
-              </ContextMenuItem>
-              <ContextMenuSeparator />
-              {playlists.map((playlist) => (
-                <ContextMenuItem key={playlist}>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    className='mr-2 h-4 w-4'
-                    viewBox='0 0 24 24'
-                  >
-                    <path d='M21 15V6M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM12 12H3M16 6H3M12 18H3' />
-                  </svg>
-                  {playlist}
-                </ContextMenuItem>
-              ))}
-            </ContextMenuSubContent>
-          </ContextMenuSub>
-          <ContextMenuSeparator />
-          <ContextMenuItem>Play Next</ContextMenuItem>
-          <ContextMenuItem>Play Later</ContextMenuItem>
-          <ContextMenuItem>Create Station</ContextMenuItem>
-          <ContextMenuSeparator />
-          <ContextMenuItem>Like</ContextMenuItem>
-          <ContextMenuItem>Share</ContextMenuItem>
-        </ContextMenuContent>
-      </ContextMenu>
-      <div className='space-y-1 text-sm'>
-        <h3 className='font-medium leading-none'>{album.name}</h3>
-        <p className='text-xs text-muted-foreground'>{album.artist}</p>
+        )}
+
+        {/* Image container */}
+        <div className='overflow-hidden rounded-sm'>
+          <img
+            src={album.cover}
+            alt={album.name}
+            width={width}
+            height={height}
+            className={cn(
+              "w-full object-cover",
+              aspectRatio === "portrait" ? "aspect-[16/9]" : "aspect-square"
+            )}
+          />
+        </div>
+      </div>
+
+      {/* Stream info */}
+      <div className='flex gap-3 items-start px-1'>
+        {/* Streamer Avatar */}
+
+        <div className='p-2 bg-gray-300 flex items-center justify-center rounded-full w-10 h-10 text-gray-500'>
+          <span>{album.artist.slice(0, 2)}</span>
+        </div>
+
+        {/* Stream details */}
+        <div className='flex-1 space-y-1'>
+          <h3 className='font-medium leading-tight text-base dark:text-white line-clamp-1'>
+            {album.name}
+          </h3>
+          <p className='text-sm text-muted-foreground line-clamp-1'>
+            {album.artist}
+          </p>
+
+          {/* Categories/Tags */}
+          <div className='flex flex-wrap gap-1 mt-1'>
+            {album.category && (
+              <span className='px-2 py-0.5 bg-muted text-xs rounded-full dark:text-gray-300'>
+                {album.category}
+              </span>
+            )}
+            {album.language && (
+              <span className='px-2 py-0.5 bg-muted text-xs rounded-full dark:text-gray-300'>
+                {album.language}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlbumArtwork } from "./components/album-artwork";
 import { Menu } from "./components/menu";
 import { Sidebar } from "./components/sidebar";
-import { listenNowAlbums } from "./data/albums";
 import { playlists } from "./data/playlist";
 import { Button } from "@/components/ui/button";
 import { useOCAuth } from "@opencampus/ocid-connect-js";
@@ -99,10 +98,8 @@ export default function HomePage() {
                                           artist: stream.owner.name,
                                           cover: getRandomImage(),
                                         }}
-                                        className='w-[250px]'
+                                        className='w-[400px]'
                                         aspectRatio='portrait'
-                                        width={250}
-                                        height={330}
                                         onClick={() =>
                                           navigate(`/class/${stream.slug}`)
                                         }
