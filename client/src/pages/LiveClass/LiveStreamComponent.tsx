@@ -23,13 +23,11 @@ import { useOCAuth } from "@opencampus/ocid-connect-js";
 
 const LiveStreamComponent = () => {
   const { slug } = useParams();
-
   const { OCId } = useOCAuth();
 
-  const apiKey = "t43uy6ywwdj2";
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   const username = OCId?.split(".")[0];
-
   const user: User = {
     id: username,
     name: username,
