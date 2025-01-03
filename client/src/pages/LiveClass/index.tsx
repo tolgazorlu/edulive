@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div>
       <Menu />
-      <div className='border-t'>
+      <div className='border-t dark:border-secondary'>
         <div className='bg-background'>
           <div className='grid lg:grid-cols-5'>
             <Sidebar playlists={playlists} className='hidden lg:block' />

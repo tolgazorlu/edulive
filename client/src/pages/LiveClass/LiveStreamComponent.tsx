@@ -117,7 +117,7 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
   };
 
   return (
-    <>
+    <div className='min-h-screen'>
       {firstParticipant ? (
         <div>
           <div className='w-full h-96 bg-gray-900 flex items-center justify-center rounded-lg overflow-hidden'>
@@ -187,8 +187,8 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
               The Live Streaming not started yet!
             </span>
           </div>
-          <div className='my-2 flex flex-col gap-2 bg-white'>
-            <span className='font-black text-xl !leading-snug'>
+          <div className='my-2 flex flex-col gap-2'>
+            <span className='font-black text-xl !leading-snug dark:text-white'>
               KELİME USTALARI KARŞI KARŞIYA! | CODENAMES
             </span>
             <div className='flex gap-2 justify-between'>
@@ -197,8 +197,12 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                   <span>TZ</span>
                 </div>
                 <div className='flex flex-col justify-center'>
-                  <span className='text-sm font-bold'>Tolga Zorlu</span>
-                  <span className='text-sm'>Software Engineer</span>
+                  <span className='text-sm font-bold dark:text-gray-400'>
+                    Tolga Zorlu
+                  </span>
+                  <span className='text-sm dark:text-gray-500'>
+                    Software Engineer
+                  </span>
                 </div>
               </div>
               <div className='flex gap-2'>
@@ -213,11 +217,11 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                 )}
               </div>
             </div>
-            <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1'>
+            <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1 dark:bg-gray-800'>
               <span className='text-green-500'>
                 {participantCount} people are watching
               </span>
-              <span className='!leading-snug'>
+              <span className='!leading-snug dark:text-gray-400'>
                 Our on-chain education network is formed with key players within
                 education and Web3 who are dedicated to building on EDU Chain.
               </span>
@@ -225,7 +229,7 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
