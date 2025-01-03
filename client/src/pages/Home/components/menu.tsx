@@ -1,4 +1,5 @@
 import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
 import {
   Menubar,
   MenubarContent,
@@ -29,10 +30,14 @@ export function Menu() {
   return (
     <Menubar className='rounded-none border-b border-none px-2 lg:px-4 flex justify-between z-50'>
       <MenubarMenu>
-        <MenubarTrigger className='text-lg font-semibold flex gap-1 text-[#00948f]'>
+        <Button
+          onClick={() => navigate("/")}
+          variant={"ghost"}
+          className='text-lg font-semibold flex gap-1 text-[#00948f] cursor-pointer'
+        >
           <RadioIcon />
           edulive
-        </MenubarTrigger>
+        </Button>
       </MenubarMenu>
 
       <div className='flex'>
