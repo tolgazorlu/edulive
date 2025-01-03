@@ -55,8 +55,10 @@ export const createStream = async (req: Request, res: Response) => {
             return res.status(400).json("User not found!")
         }
 
+        const username = user.ocid.split(".")[0]
+
         const newUser: UserRequest = {
-            id: "tolga",
+            id: username,
             role: 'user',
             custom: {
                 color: 'red',
@@ -67,19 +69,19 @@ export const createStream = async (req: Request, res: Response) => {
 
         await client.upsertUsers([newUser]);
 
-        const userToken = client.generateUserToken({ user_id: "tolga" });
+        const userToken = client.generateUserToken({ user_id: username });
 
         const response = await call.getOrCreate({
             data: {
-                created_by_id: "tolga",
-                members: [{ user_id: "tolga", role: "host" }],
+                created_by_id: username,
+                members: [{ user_id: username, role: "host" }],
             },
         });
 
         console.log(response)
 
         const callId = response.call.id;
-        const viewerToken = client.generateCallToken({ user_id: "tolga" });
+        const viewerToken = client.generateCallToken({ user_id: username });
 
 
         const newSlug = slugify(req.body.title, {

@@ -28,9 +28,11 @@ const LiveStreamComponent = () => {
 
   const apiKey = "t43uy6ywwdj2";
 
+  const username = OCId?.split(".")[0];
+
   const user: User = {
-    id: "tolga",
-    name: "Tolga",
+    id: username,
+    name: username,
   };
 
   const { data: streamInformation } = useGetStreamInformation(slug!);
