@@ -74,34 +74,6 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
 
   const [firstParticipant] = useParticipants();
 
-  const handleDonation = async () => {
-    try {
-      if (!contract || !streamInformation) {
-        toast.error("Contract or stream information not available");
-        return;
-      }
-
-      if (!donationAmount || parseFloat(donationAmount) <= 0) {
-        toast.error("Please enter a valid donation amount");
-        return;
-      }
-
-      const toastId = toast.loading("Processing donation...");
-
-      const tx = await contract.donate(streamInformation.id, {
-        value: parseEther(donationAmount),
-      });
-
-      await tx.wait();
-      toast.dismiss(toastId);
-      toast.success("Donation sent successfully!");
-      setDonationAmount("");
-    } catch (error: any) {
-      console.error("Donation error:", error);
-      toast.error(error.message || "Failed to send donation");
-    }
-  };
-
   const { mutate: updateStatus } = useUpdateStreamStatus();
 
   const handleEndStream = () => {
