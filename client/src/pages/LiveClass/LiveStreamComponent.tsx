@@ -24,6 +24,8 @@ import { useOCAuth } from "@opencampus/ocid-connect-js";
 const LiveStreamComponent = () => {
   const { slug } = useParams();
 
+  const { OCId } = useOCAuth();
+
   const apiKey = "t43uy6ywwdj2";
 
   const user: User = {
@@ -47,20 +49,6 @@ const LiveStreamComponent = () => {
   const call = client.call("livestream", callId);
   call.join({ create: true });
 
-  const { mutate: updateStatus } = useUpdateStreamStatus();
-
-  const handleEndStream = () => {
-    updateStatus(
-      { streamId: streamInformation._id, isLive: false },
-      {
-        onSuccess: () => {
-          toast.success("Stream ended successfully");
-          window.location.href = "/";
-        },
-      }
-    );
-  };
-
   return (
     <div className='col-span-9 h-auto rounded-xl'>
       <StreamVideo client={client}>
@@ -72,15 +60,6 @@ const LiveStreamComponent = () => {
           />
         </StreamCall>
       </StreamVideo>
-      {streamInformation?.owner._id === user.id && (
-        <Button
-          variant='destructive'
-          onClick={handleEndStream}
-          className='absolute top-4 right-4 z-10'
-        >
-          End Stream
-        </Button>
-      )}
     </div>
   );
 };
@@ -123,6 +102,20 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
     }
   };
 
+  const { mutate: updateStatus } = useUpdateStreamStatus();
+
+  const handleEndStream = () => {
+    updateStatus(
+      { streamId: streamInformation._id, isLive: false },
+      {
+        onSuccess: () => {
+          toast.success("Stream ended successfully");
+          window.location.href = "/";
+        },
+      }
+    );
+  };
+
   return (
     <>
       {firstParticipant ? (
@@ -158,13 +151,21 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                 </div>
               </div>
               <div className='flex gap-2'>
-                <Button className='bg-red-500'>Follow</Button>
+                {streamInformation?.owner.ocid !== OCId && (
+                  <Button className='bg-red-500'>Follow</Button>
+                )}
+
                 <div className='flex gap-2'>
                   {streamInformation && OCId && (
                     <DonationForm
                       streamId={streamInformation.id}
                       streamerAddress={streamInformation.owner.edu_address}
                     />
+                  )}
+                  {streamInformation?.owner.ocid === OCId && (
+                    <Button variant='destructive' onClick={handleEndStream}>
+                      End Stream
+                    </Button>
                   )}
                 </div>
               </div>
@@ -205,6 +206,11 @@ const LivestreamView = ({ callId, streamInformation }: any) => {
                 <Button className='bg-gradient-to-br from-green-500 to-teal-500'>
                   Support <HeartHandshakeIcon />
                 </Button>
+                {streamInformation?.owner.ocid === OCId && (
+                  <Button variant='destructive' onClick={handleEndStream}>
+                    End Stream
+                  </Button>
+                )}
               </div>
             </div>
             <div className='w-full bg-gray-100 rounded-xl min-h-32 p-2 flex flex-col gap-1'>
