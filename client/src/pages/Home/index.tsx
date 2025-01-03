@@ -34,11 +34,11 @@ export default function HomePage() {
   return (
     <div>
       <Menu />
-      <div className='border-t'>
+      <div className='border-t dark:border-t-secondary'>
         <div className='bg-background'>
           <div className='grid lg:grid-cols-5'>
             <Sidebar playlists={playlists} className='hidden lg:block' />
-            <div className='col-span-3 lg:col-span-4 lg:border-l'>
+            <div className='col-span-3 lg:col-span-4 lg:border-l dark:border-l-secondary'>
               <div className='h-full px-4 py-6 lg:px-8'>
                 <Tabs defaultValue='music' className='h-full space-y-6'>
                   <div className='space-between flex items-center'>
@@ -70,7 +70,7 @@ export default function HomePage() {
                         <div className='space-y-4'>
                           <div className='flex items-center justify-between'>
                             <div className='space-y-1'>
-                              <h2 className='text-2xl font-semibold tracking-tight'>
+                              <h2 className='text-2xl font-semibold tracking-tight dark:text-white'>
                                 Live Now
                               </h2>
                               <p className='text-sm text-muted-foreground'>
@@ -126,7 +126,7 @@ export default function HomePage() {
                         <div className='space-y-4 mt-8'>
                           <div className='flex items-center justify-between'>
                             <div className='space-y-1'>
-                              <h2 className='text-2xl font-semibold tracking-tight'>
+                              <h2 className='text-2xl font-semibold tracking-tight dark:text-white'>
                                 Past Streams
                               </h2>
                               <p className='text-sm text-muted-foreground'>

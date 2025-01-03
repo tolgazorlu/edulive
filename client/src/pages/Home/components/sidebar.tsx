@@ -14,7 +14,7 @@ export function Sidebar({ className, playlists }: SidebarProps) {
     <div className={cn("pb-12", className)}>
       <div className='space-y-4 py-4'>
         <div className='px-3 py-2'>
-          <h2 className='mb-2 px-4 text-lg font-semibold tracking-tight'>
+          <h2 className='mb-2 px-4 text-lg font-semibold tracking-tight dark:text-white'>
             Discover
           </h2>
           <div className='space-y-1'>
@@ -62,7 +62,7 @@ export function Sidebar({ className, playlists }: SidebarProps) {
           </div>
         </div>
         <div>
-          <h2 className='relative px-7 text-lg font-semibold tracking-tight'>
+          <h2 className='relative px-7 text-lg font-semibold tracking-tight dark:text-white'>
             Teachers
           </h2>
           <ScrollArea className=' px-1'>
@@ -71,7 +71,7 @@ export function Sidebar({ className, playlists }: SidebarProps) {
                 <Button
                   key={`${playlist}-${i}`}
                   variant='ghost'
-                  className='w-full justify-start font-normal'
+                  className='w-full justify-start font-normal dark:text-white'
                 >
                   <CircleCheck className='text-primary' />
                   {playlist}
