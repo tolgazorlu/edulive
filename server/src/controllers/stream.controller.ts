@@ -59,12 +59,8 @@ export const createStream = async (req: Request, res: Response) => {
 
         const newUser: UserRequest = {
             id: username,
-            role: 'user',
-            custom: {
-                color: 'red',
-            },
-            name: user.name,
-            image: user.avatar,
+            name: username,
+            role: "user"
         };
 
         await client.upsertUsers([newUser]);
@@ -77,8 +73,6 @@ export const createStream = async (req: Request, res: Response) => {
                 members: [{ user_id: username, role: "host" }],
             },
         });
-
-        console.log(response)
 
         const callId = response.call.id;
         const viewerToken = client.generateCallToken({ user_id: username });
