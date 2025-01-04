@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
-import type { User, Channel as StreamChannel } from "stream-chat";
 import {
-  useCreateChatClient,
   Chat,
   Channel,
   ChannelHeader,
@@ -9,55 +6,61 @@ import {
   MessageList,
   Thread,
   Window,
+  LoadingIndicator,
 } from "stream-chat-react";
-
 import "stream-chat-react/dist/css/v2/index.css";
 import "../../index.css";
+import { useEffect, useState } from "react";
 import { useGetStreamInformation } from "@/api/stream";
 import { useParams } from "react-router-dom";
+import { StreamChat, Channel as StreamChannel } from "stream-chat";
 
-const apiKey = "dz5f4d5kzrue";
-const userId = "solitary-unit-1";
-const userName = "solitary";
-const userToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic29saXRhcnktdW5pdC0xIiwiZXhwIjoxNzM1OTA4MTgxfQ.qmhtRAAgREPhypRSBao6MmPKs07hHQIrerqqPG2Ehro";
-
-const user: User = {
-  id: userId,
-  name: userName,
-  image: `https://getstream.io/random_png/?name=${userName}`,
+const user = {
+  id: "123",
+  name: "John Doe",
+  image: "https://getstream.io/random_png/?name=react",
 };
 
 const LiveChatComponent = () => {
   const { slug } = useParams();
-  const { data: stream } = useGetStreamInformation(slug as string);
-  const [channel, setChannel] = useState<StreamChannel>();
-  const client = useCreateChatClient({
-    apiKey,
-    tokenOrProvider: userToken,
-    userData: user,
-  });
+
+  const apiKey = import.meta.env.VITE_API_KEY;
+
+  const [client, setClient] = useState<StreamChat | null>(null);
+  const [channel, setChannel] = useState<StreamChannel | null>(null);
 
   useEffect(() => {
-    if (!client) return;
+    async function init() {
+      const chatClient = StreamChat.getInstance(apiKey);
+      await chatClient.connectUser(user, chatClient.devToken(user.id));
 
-    const channel = client.channel("messaging", "custom_channel_id", {
-      image: "https://getstream.io/random_png/?name=react",
-      name: "Talk about React",
-      members: [userId],
-    });
+      const channel = chatClient.channel("messaging", slug, {
+        members: [user.id],
+      });
 
-    setChannel(channel);
-  }, [client]);
+      await channel.watch();
 
-  if (!client) return <div>Setting up client & connection...</div>;
+      setClient(chatClient);
+      setChannel(channel);
+    }
+
+    init();
+
+    return () => {
+      if (client) {
+        client.disconnectUser();
+      }
+    };
+  }, []);
+
+  if (!client || !channel) return <LoadingIndicator />;
 
   return (
     <div className='col-span-3 h-[96vh] rounded-xl'>
       <Chat client={client}>
         <Channel channel={channel}>
           <Window>
-            <ChannelHeader title={stream?.title} />
+            <ChannelHeader />
             <MessageList />
             <MessageInput />
           </Window>
