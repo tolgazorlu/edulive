@@ -147,6 +147,43 @@
   .str-chat__message-input {
     background: hsl(var(--background));
   }
+
+  .str-chat__message-textarea-container {
+    color: hsl(var(--foreground));
+  }
+
+  .rta__textarea {
+    color: hsl(var(--foreground));
+  }
+
+  .str-chat__message-textarea-with-emoji-picker {
+    color: hsl(var(--foreground));
+  }
+
+  .str-chat__message-textarea-with-emoji-picker .rta__textarea {
+    color: hsl(var(--foreground));
+  }
+
+  .str-chat__message-textarea-with-emoji-picker
+    .rta__textarea
+    .rta__textarea-inner {
+    color: hsl(var(--foreground));
+  }
+
+  .str-chat__message-textarea-with-emoji-picker
+    .rta__textarea
+    .rta__textarea-inner {
+    color: hsl(var(--foreground));
+  }
+
+  .str-chat__empty-channel {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  .rta__textarea {
+    color: hsl(var(--foreground)) !important;
+  }
 }
 
 .dark .str-chat__list {
