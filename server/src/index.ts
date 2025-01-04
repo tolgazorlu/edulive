@@ -13,7 +13,8 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://edulivee.vercel.app/"
+            "https://edulivee.vercel.app",
+            "https://edulive-2r06.onrender.com",
         ],
         credentials: true,
     }),
