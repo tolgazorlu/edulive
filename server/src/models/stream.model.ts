@@ -9,7 +9,8 @@ interface IStream extends Document {
     streamKey: string;
     owner: IUser;
     viewerToken: string;
-    callId: string
+    callId: string;
+    chatToken: string;
 }
 
 const StreamSchema: Schema = new Schema({
@@ -22,7 +23,8 @@ const StreamSchema: Schema = new Schema({
     viewerToken: { type: String },
     callId: { type: String },
     isLive: { type: Boolean, default: false },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    chatToken: { type: String },
 });
 
 const StreamModel: Model<IStream> = mongoose.model<IStream>("Stream", StreamSchema);

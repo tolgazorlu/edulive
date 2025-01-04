@@ -15,8 +15,6 @@ import {
 import { HeartHandshakeIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useContract } from "@/hooks/useContract";
-import { parseEther } from "ethers";
 import { toast } from "sonner";
 import { DonationForm } from "@/components/DonationForm";
 import { useOCAuth } from "@opencampus/ocid-connect-js";
@@ -67,9 +65,6 @@ const LiveStreamComponent = () => {
 const LivestreamView = ({ callId, streamInformation }: any) => {
   const { OCId } = useOCAuth();
   const { useParticipantCount, useParticipants } = useCallStateHooks();
-  const { contract } = useContract();
-  const [donationAmount, setDonationAmount] = useState("");
-
   const participantCount = useParticipantCount();
 
   const [firstParticipant] = useParticipants();
