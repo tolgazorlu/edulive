@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   useGetStreamInformation,
@@ -65,6 +64,7 @@ const LiveStreamComponent = () => {
 const LivestreamView = ({ callId, streamInformation }: any) => {
   const { OCId } = useOCAuth();
   const { useParticipantCount, useParticipants } = useCallStateHooks();
+
   const participantCount = useParticipantCount();
 
   const [firstParticipant] = useParticipants();
