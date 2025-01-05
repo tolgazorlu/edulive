@@ -7,9 +7,8 @@ interface OCIDProviderProps {
 }
 
 const opts = {
-  //   redirectUri: "https://dacospacev1-tolgazorlus-projects.vercel.app/redirect",
-  // redirectUri: "http://localhost:5173/redirect",
-  redirectUri: "https://edulivee.vercel.app/redirect",
+  redirectUri: "http://localhost:5173/redirect",
+  // redirectUri: "https://edulivee.vercel.app/redirect",
 };
 
 const OCIDProvider: FC<OCIDProviderProps> = ({ children }) => (

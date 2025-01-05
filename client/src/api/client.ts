@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
     baseURL:
-        process.env.NODE_ENV === "production" ? "https://edulive-2r06.onrender.com/v1/" : "/",
+        process.env.NODE_ENV === "development" ? "http://localhost:8080/v1/" : "/",
     headers: {
         "Content-Type": "application/json",
     },
