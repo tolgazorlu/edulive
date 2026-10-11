@@ -1,35 +1,65 @@
-# EduLive - Decentralized Educational Streaming Platform
+# EduLive
 
-EduLive is a web3-enabled educational live streaming platform that allows educators to create and monetize live educational content while enabling students to participate and support creators through cryptocurrency donations.
+A web3-enabled educational live streaming platform where educators stream classes and students support them with crypto donations.
 
-## 🚀 Features
+## About
 
-- **Live Streaming**: Create and watch educational live streams using RTMP protocol
-- **Web3 Integration**: Send and receive cryptocurrency donations during streams
-- **Authentication**: Secure login through OpenCampus ID Connect
-- **Interactive UI**: Modern, responsive interface built with React and Tailwind CSS
+EduLive lets educators create and run live educational streams while students watch, chat, and send on-chain donations to support creators. Built 2024-12 to 2025-01 for the EduChain hackathon, where it won a prize for its use of blockchain donations in education.
 
-## 🛠️ Technology Stack
+## Features
 
-### Frontend
-- React 18 with TypeScript
-- Vite for build tooling
-- TailwindCSS for styling
-- Shadcn/ui for UI components
-- React Query for data fetching
-- React Router for navigation
-- Stream.io SDK for video streaming
-- Ethers.js for blockchain interactions
+- Live streaming for classes via Stream.io video infrastructure
+- Live chat alongside each stream
+- Wallet-based authentication through OpenCampus ID Connect
+- On-chain donations to streamers through a custom Solidity contract
+- Stream creation flow that issues RTMP URL and stream key
 
-### Backend
-- Node.js with Express
-- TypeScript
-- MongoDB for database
-- CORS enabled for frontend communication
+## Tech stack
 
-### Blockchain
-- Solidity smart contracts
-- Foundry for smart contract development
-- Custom EduLive contract for handling donations
+**Client**: React 18, TypeScript, Vite, TailwindCSS, shadcn/ui, React Query, React Router, Stream.io video/chat SDKs, Ethers.js
 
-## 🏗️ Project Structure 
+**Server**: Node.js, Express, TypeScript, MongoDB (Mongoose)
+
+**Contracts**: Solidity, Foundry
+
+## Architecture
+
+```
+client/     React SPA (Vite) - pages, stream UI, donation form, OCID auth
+server/     Express API - stream, auth and donation routes, MongoDB models
+contracts/  Foundry project - Edulive.sol donation contract and deploy script
+```
+
+## Getting started
+
+### Client
+```
+cd client
+yarn install
+yarn dev
+```
+Required env vars (`client/.env.example`): `VITE_API_KEY` (Stream.io API key).
+
+### Server
+```
+cd server
+npm install
+npm run dev
+```
+Required env vars (`server/.env.example`): `PORT`, `MONGO_URI`, `API_KEY`, `SECRET_KEY`.
+
+### Contracts
+```
+cd contracts
+forge build
+forge script script/DeployEdulive.s.sol --broadcast
+```
+Required env var (`contracts/.env.example`): `ACCOUNT_PRIVATE_KEY`.
+
+## Status
+
+Archived. Built for a hackathon, not actively maintained.
+
+## Related projects
+
+- [dacospace-legacy](https://github.com/tolgazorlu/dacospace-legacy)
